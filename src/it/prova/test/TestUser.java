@@ -106,7 +106,7 @@ public class TestUser {
 		if (userService.aggiorna(toBeUpdated) != 1)
 			throw new RuntimeException("testUpdateUser FAILED ");
 
-		System.out.println(".......testUpdateUser inizio.............");
+		System.out.println(".......testUpdateUser PASSED.............");
 	}
 
 }

@@ -168,6 +168,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 		if (example.getCognome() != null && !example.getCognome().isEmpty()) {
 			query += " and cognome like '" + example.getCognome() + "%' ";
 		}
+		
 		if (example.getNome() != null && !example.getNome().isEmpty()) {
 			query += " and nome like '" + example.getNome() + "%' ";
 		}
