@@ -1,6 +1,6 @@
 package it.prova.test;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import it.prova.model.User;
@@ -30,8 +30,8 @@ public class TestUser {
 
 			testUpdateUser(userService);
 			System.out.println("In tabella ci sono " + userService.listAll().size() + " elementi.");
-			
-			//E TUTTI I TEST VANNO FATTI COSI'
+
+			// E TUTTI I TEST VANNO FATTI COSI'
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class TestUser {
 
 	private static void testInserimentoNuovoUser(UserService userService) throws Exception {
 		System.out.println(".......testInserimentoNuovoUser inizio.............");
-		User newUserInstance = new User("mauro", "rossi", "avavv", "bobobo", new Date());
+		User newUserInstance = new User("mauro", "rossi", "avavv", "bobobo", LocalDate.now());
 		if (userService.inserisciNuovo(newUserInstance) != 1)
 			throw new RuntimeException("testInserimentoNuovoUser FAILED ");
 
@@ -67,8 +67,8 @@ public class TestUser {
 	private static void testFindByExample(UserService userService) throws Exception {
 		System.out.println(".......testFindByExample inizio.............");
 		// inserisco i dati che poi mi aspetto di ritrovare
-		userService.inserisciNuovo(new User("Asallo", "Bianchi", "pier", "pwd@1", new Date()));
-		userService.inserisciNuovo(new User("Astolfo", "Verdi", "ast", "pwd@2", new Date()));
+		userService.inserisciNuovo(new User("Asallo", "Bianchi", "pier", "pwd@1", LocalDate.now()));
+		userService.inserisciNuovo(new User("Astolfo", "Verdi", "ast", "pwd@2", LocalDate.now()));
 
 		// preparo un example che ha come nome 'as' e ricerco
 		List<User> risultatifindByExample = userService.findByExample(new User("as"));
@@ -88,7 +88,7 @@ public class TestUser {
 		System.out.println(".......testUpdateUser inizio.............");
 
 		// inserisco i dati che poi modifico
-		if (userService.inserisciNuovo(new User("Giovanna", "Sastre", "gio", "pwd@3", new Date())) != 1)
+		if (userService.inserisciNuovo(new User("Giovanna", "Sastre", "gio", "pwd@3", LocalDate.now())) != 1)
 			throw new RuntimeException("testUpdateUser: inserimento preliminare FAILED ");
 
 		// recupero col findbyexample e mi aspetto di trovarla
@@ -96,9 +96,9 @@ public class TestUser {
 		if (risultatifindByExample.size() != 1)
 			throw new RuntimeException("testUpdateUser: testFindByExample FAILED ");
 
-		//mi metto da parte l'id su cui lavorare per il test
+		// mi metto da parte l'id su cui lavorare per il test
 		Long idGiovanna = risultatifindByExample.get(0).getId();
-		
+
 		// ricarico per sicurezza con l'id individuato e gli modifico un campo
 		String nuovoCognome = "Perastra";
 		User toBeUpdated = userService.findById(idGiovanna);

@@ -33,7 +33,8 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 				userTemp.setCognome(rs.getString("COGNOME"));
 				userTemp.setLogin(rs.getString("LOGIN"));
 				userTemp.setPassword(rs.getString("PASSWORD"));
-				userTemp.setDateCreated(rs.getDate("DATECREATED"));
+				userTemp.setDateCreated(
+						rs.getDate("DATECREATED") != null ? rs.getDate("DATECREATED").toLocalDate() : null);
 				userTemp.setId(rs.getLong("ID"));
 				result.add(userTemp);
 			}
@@ -65,7 +66,8 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 					result.setCognome(rs.getString("COGNOME"));
 					result.setLogin(rs.getString("LOGIN"));
 					result.setPassword(rs.getString("PASSWORD"));
-					result.setDateCreated(rs.getDate("DATECREATED"));
+					result.setDateCreated(
+							rs.getDate("DATECREATED") != null ? rs.getDate("DATECREATED").toLocalDate() : null);
 					result.setId(rs.getLong("ID"));
 				} else {
 					result = null;
@@ -96,7 +98,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 			ps.setString(3, utenteInput.getLogin());
 			ps.setString(4, utenteInput.getPassword());
 			// quando si fa il setDate serve un tipo java.sql.Date
-			ps.setDate(5, new java.sql.Date(utenteInput.getDateCreated().getTime()));
+			ps.setDate(5, java.sql.Date.valueOf(utenteInput.getDateCreated()));
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,7 +124,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 			ps.setString(3, utenteInput.getLogin());
 			ps.setString(4, utenteInput.getPassword());
 			// quando si fa il setDate serve un tipo java.sql.Date
-			ps.setDate(5, new java.sql.Date(utenteInput.getDateCreated().getTime()));
+			ps.setDate(5, java.sql.Date.valueOf(utenteInput.getDateCreated()));
 			ps.setLong(6, utenteInput.getId());
 			result = ps.executeUpdate();
 		} catch (Exception e) {
@@ -168,7 +170,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 		if (example.getCognome() != null && !example.getCognome().isEmpty()) {
 			query += " and cognome like '" + example.getCognome() + "%' ";
 		}
-		
+
 		if (example.getNome() != null && !example.getNome().isEmpty()) {
 			query += " and nome like '" + example.getNome() + "%' ";
 		}
@@ -182,7 +184,7 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 		}
 
 		if (example.getDateCreated() != null) {
-			query += " and DATECREATED='" + new java.sql.Date(example.getDateCreated().getTime()) + "' ";
+			query += " and DATECREATED='" + java.sql.Date.valueOf(example.getDateCreated()) + "' ";
 		}
 
 		try (Statement ps = connection.createStatement()) {
@@ -194,7 +196,8 @@ public class UserDAOImpl extends AbstractMySQLDAO implements UserDAO {
 				userTemp.setCognome(rs.getString("COGNOME"));
 				userTemp.setLogin(rs.getString("LOGIN"));
 				userTemp.setPassword(rs.getString("PASSWORD"));
-				userTemp.setDateCreated(rs.getDate("DATECREATED"));
+				userTemp.setDateCreated(
+						rs.getDate("DATECREATED") != null ? rs.getDate("DATECREATED").toLocalDate() : null);
 				userTemp.setId(rs.getLong("ID"));
 				result.add(userTemp);
 			}

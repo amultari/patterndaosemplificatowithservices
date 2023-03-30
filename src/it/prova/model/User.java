@@ -1,7 +1,7 @@
 package it.prova.model;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class User {
 	private Long id;
@@ -9,11 +9,11 @@ public class User {
 	private String cognome;
 	private String login;
 	private String password;
-	private Date dateCreated;
+	private LocalDate dateCreated;
 
 	public User() {
 	}
-	
+
 	public User(String nome) {
 		this.nome = nome;
 	}
@@ -22,15 +22,15 @@ public class User {
 		this.nome = nome;
 		this.cognome = cognome;
 	}
-	
+
 	public User(String nome, String cognome, String login, String password) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.login = login;
 		this.password = password;
 	}
-	
-	public User(String nome, String cognome, String login, String password, Date dateCreated) {
+
+	public User(String nome, String cognome, String login, String password, LocalDate dateCreated) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.login = login;
@@ -78,18 +78,19 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getDateCreated() {
+	public LocalDate getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(LocalDate dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
 	@Override
 	public String toString() {
-		String dateCreatedString = dateCreated!=null?new SimpleDateFormat("dd/MM/yyyy").format(dateCreated):" N.D.";
-		
+		String dateCreatedString = dateCreated != null ? new SimpleDateFormat("dd/MM/yyyy").format(dateCreated)
+				: " N.D.";
+
 		return "User [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", login=" + login + ", password="
 				+ password + ", dateCreated=" + dateCreatedString + "]";
 	}
