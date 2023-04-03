@@ -58,7 +58,7 @@ public class TestUser {
 		Long idDelPrimo = interoContenutoTabella.get(0).getId();
 		// ricarico per sicurezza con l'id individuato
 		User toBeRemoved = userService.findById(idDelPrimo);
-		if (userService.rimuovi(toBeRemoved) != 1)
+		if (userService.rimuovi(toBeRemoved.getId()) != 1)
 			throw new RuntimeException("testRimozioneUser FAILED ");
 
 		System.out.println(".......testRimozioneUser PASSED.............");
@@ -78,7 +78,7 @@ public class TestUser {
 		// se sono qui il test è ok quindi ripulisco i dati che ho inserito altrimenti
 		// la prossima volta non sarebbero 2 ma 4, ecc.
 		for (User userItem : risultatifindByExample) {
-			userService.rimuovi(userItem);
+			userService.rimuovi(userItem.getId());
 		}
 
 		System.out.println(".......testFindByExample PASSED.............");

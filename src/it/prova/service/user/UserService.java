@@ -19,7 +19,7 @@ public interface UserService {
 
 	public int inserisciNuovo(User input) throws Exception;
 
-	public int rimuovi(User input) throws Exception;
+	public int rimuovi(Long idDaRimuovere) throws Exception;
 
 	public List<User> findByExample(User input) throws Exception;
 	
