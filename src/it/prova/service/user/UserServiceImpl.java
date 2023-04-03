@@ -1,8 +1,8 @@
 package it.prova.service.user;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import it.prova.connection.MyConnection;
@@ -147,7 +147,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> cercaTuttiQuelliCreatiPrimaDi(Date dataConfronto) throws Exception {
+	public List<User> cercaTuttiQuelliCreatiPrimaDi(LocalDate dataConfronto) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

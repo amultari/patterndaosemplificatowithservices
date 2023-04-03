@@ -1,6 +1,6 @@
 package it.prova.service.user;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import it.prova.dao.user.UserDAO;
@@ -27,7 +27,7 @@ public interface UserService {
 	//DA FARE PER ESERCIZIO: OVVIAMENTE BISOGNA RICREARE LA CONTROPARTE IN UserDAO e UserDAOImpl
 	public List<User> cercaTuttiQuelliCheUsernameIniziaCon(String iniziale) throws Exception;
 	
-	public List<User> cercaTuttiQuelliCreatiPrimaDi(Date dataConfronto) throws Exception;
+	public List<User> cercaTuttiQuelliCreatiPrimaDi(LocalDate dataConfronto) throws Exception;
 	
 	public List<User> cercaPerCognomeENomeCheInziaCon(String cognomeInput, String inzialeNomeInput) throws Exception;
 
